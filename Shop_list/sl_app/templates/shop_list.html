@@ -7,26 +7,44 @@
 <body>
 <div class="container">
     <h2>SHOPLIST</h2>
+    <style type="text/css">
+     table {
+        text-align: center;
+     }
+     td, th  {
+        padding: 10px;
+     }
+     input  {
+       text-align: center;
+       border: 0;
+     }
+    </style>
+    <p>Перед закрытием позиции отредактируйте количесто и цену !</p>
+    <table border="1">
+        <tr>
+            <th>Название предмета</th>
+            <th>Количество</th>
+            <th>Цена покупки</th>
+            <th>Магазин</th>
+            <th>Крайний срок покупки</th>
+            <th>Отметка о покупке </th>
+        </tr>
+        {% for x in shoplst %}
+        <tr>
+            <td>{{ x.name_item }}</td>
+            <td>{{ x.quantity }}</td>
+            <td>{{ x.price }}</td>
+            <td>{{ x.name_mall }}</td>
+            <td>{{ x.buy_date }}</td>
+            <td><a href="/shop_list/<{{ x.id }},{{ x.name_item }}>/buy">Куплено</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+    <p> <button type="submit" onclick="location.href='{% url 'add_to_list' %}'" name='add_to_list'>Добавить новую позицию</button>
 
-<table border='1'>
-  <tr>
-    <th>item_id_id</th>
-    <th>quantity</th>
-    <th>price</th>
-      <th>status</th>
-      <th>buy_date</th>
-  </tr>
-  {% for x in shoplst %}
-    <tr>
-      <td>{{ x.item_id_id }}</td>
-        <td>{{ x.quantity }}</td>
-      <td>{{ x.price }}</td>
-        <td>{{ x.status }}</td>
-        <td>{{ x.buy_date }}</td>
-    </tr>
-  {% endfor %}
-</table>
-    <p><p><a href="/user/add_item">добавление товаров</a></p> </p>
+    </p>
+
 </div>
+
 </body>
 </html>

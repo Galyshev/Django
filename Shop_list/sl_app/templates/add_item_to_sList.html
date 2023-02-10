@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Добавление товара </title>
+</head>
+<body>
+<style>
+      select {
+        font-family: "Inter", sans-serif;
+        font-size: 20px;
+        color: #black;
+        margin: 0;
+      }
+
+</style>
+
+<div class="container">
+    <h1>Добавление в шоплист</h1>
+    <form action="{{ add_ok }}" method="post">
+        {% csrf_token %}
+        <p><b>Доступные товары в магазине {{ mall_name }}</b></p>
+        <select name="item">
+            {% for rez in item %}
+            <option value="{{rez.id}}">{{rez.name_item}}</option>
+            {% endfor %}
+        </select>
+        <p>Количество</p>
+        <p><input type="text" name="quantity"></p>
+        <p><b>Крайний срок покупки</b></p>
+    <label for class="date"></label>
+    <input type="date" class="date" name="date">
+    <p>
+            <button type="submit" name='add_data'>Подтвердить</button>
+        </p>
+    </form>
+    <p><a href="/user/add_item">добавление товара в базу магазина</a></p>
+</div>
+</body>
+</html>

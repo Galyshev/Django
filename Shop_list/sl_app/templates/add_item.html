@@ -5,19 +5,22 @@
     <title>Добавление товара</title>
 </head>
 <body>
-  <div class="container">
+<div class="container">
     <h1>Добавление товара</h1>
     <form action="{% url 'add_item' %}" method="post">
-    <p><label for="name_item"><b>Название товара</b></label></p>
-    <input type="text" name="name_item" id="name_item" required>
-    {% csrf_token %}
-    <p><b>Выберите магазин</b></p>
-     {% for rez in mall %}
+        <p><label for="name_item"><b>Название товара</b></label></p>
+        <input type="text" name="name_item" id="name_item" required>
+        {% csrf_token %}
+        <p><b>Выберите магазин</b></p>
+        {% for rez in mall %}
         <input type="radio" name="mall" value="{{rez.id}}">{{rez.name_mall}}
         {% endfor %}
 
-   <p><button type="submit" class="registerbtn">Добавить</button></p>
-    </form>>
-  </div>
+        <p>
+            <button type="submit" class="registerbtn">Добавить</button>
+        </p>
+    </form>
+    >
+</div>
 </body>
 </html>

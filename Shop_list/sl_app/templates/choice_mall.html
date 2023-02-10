@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Добавление товара в шоплист</title>
+</head>
+<body>
+
+<div class="container">
+    <h1>Добавление в шоплист</h1>
+    <form action=" {{ add_to_list }}" method="post">
+        {% csrf_token %}
+        <p><b>Выберите магазин</b></p>
+        {% for rez in mall %}
+        <input type="radio" name="mall" value="{{rez.id}}">{{rez.name_mall}}
+        {% endfor %}
+        <p>
+            <button type="submit" value="Подтвердить" name='add_mall'>Подтвердить</button>
+        </p>
+    </form>
+
+</div>
+</body>
+</html>

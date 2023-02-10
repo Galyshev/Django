@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Покупка товара</title>
+</head>
+<body>
+<div class="container">
+    <h1>Покупка товара</h1>
+    <form method="post">
+        {% csrf_token %}
+        <h2>{{ name_item }}</h2> куплен в количестве
+        <p><input type="text" name="quantity"></p>
+        <p>по цене</p>
+        <p><input type="text" name="price"></p>
+        <p><button type="submit" class="confirm">Подтвердить</button>
+        </p>
+    </form>
+</div>
+</body>
+</html>
