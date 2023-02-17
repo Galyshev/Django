@@ -6,7 +6,8 @@
 </head>
 <body>
 <div class="container">
-    <h2>SHOPLIST</h2>
+    <h2>SHOPLIST для  {{ current_user }}</h2>
+    <p>Выход из учетной записи:  <a href="/user/logaut">logaut</a></p>
     <style type="text/css">
      table {
         text-align: center;
@@ -18,8 +19,12 @@
        text-align: center;
        border: 0;
      }
+     td.del  {
+       text-align: center;
+       background-color: #F9C5BC;
+     }
     </style>
-    <p>Перед закрытием позиции отредактируйте количесто и цену !</p>
+
     <table border="1">
         <tr>
             <th>Название предмета</th>
@@ -28,6 +33,7 @@
             <th>Магазин</th>
             <th>Крайний срок покупки</th>
             <th>Отметка о покупке </th>
+            <th></th>
         </tr>
         {% for x in shoplst %}
         <tr>
@@ -37,6 +43,7 @@
             <td>{{ x.name_mall }}</td>
             <td>{{ x.buy_date }}</td>
             <td><a href="/shop_list/<{{ x.id }},{{ x.name_item }}>/buy">Куплено</a></td>
+            <td class="del"><a href="/shop_list/<{{ x.id }}>/del_from_list">Удалить</a></td>
         </tr>
         {% endfor %}
     </table>

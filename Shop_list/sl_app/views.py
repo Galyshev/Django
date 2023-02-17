@@ -1,5 +1,5 @@
 import datetime
-
+from django.contrib.auth.models import User
 from django.http import HttpResponse
 from django.shortcuts import redirect
 from django.template import loader
@@ -8,9 +8,10 @@ from django.urls import reverse
 from sl_app.models import User_to_list, Shop_list, MallList, Item
 
 def index(request):
-    template = loader.get_template('index.html')
-    return HttpResponse(template.render())
-
+    if request.user.is_authenticated:
+        return redirect('/shop_list/slist')
+    else:
+        return redirect('/user/authorization')
 
 def slist(request):
     if request.method == 'GET':
@@ -25,10 +26,12 @@ def slist(request):
                 and sl_app_shop_list.status = "нужно купить";
                 '''
         shoplst = Shop_list.objects.raw(sql, [str(lst), ])
-
+        current_user = User.objects.get(username=request.user.username)
+        print(current_user)
         template = loader.get_template('shop_list.html')
         context = {
             'shoplst': shoplst,
+            'current_user': current_user
         }
         return HttpResponse(template.render(context, request))
 
@@ -48,24 +51,9 @@ def add_to_list(request):
         mall_name = MallList.objects.get(id=mall_chk).name_mall
         print(mall_name)
         item = Item.objects.filter(shop_id_id=mall_chk).values()
-        template = loader.get_template('add_item_to_sList.html')
-        context = {
-            'mall_name': mall_name,
-            'item': item
-        }
         request.session['mall_chk'] = mall_chk
         return redirect('/shop_list/add_ok')
-    # else:
-    #     mall_chk = request.POST.get("mall")
-    #     mall_name = MallList.objects.get(id=mall_chk).name_mall
-    #     print(mall_name)
-    #     item = Item.objects.filter(shop_id_id=mall_chk).values()
-    #     template = loader.get_template('add_item_to_sList.html')
-    #     context = {
-    #         'mall_name': mall_name,
-    #         'item': item
-    #     }
-    #     return HttpResponse(template.render(context, request))
+
 
 def add_ok(request):
     if request.method == 'GET':
@@ -105,6 +93,12 @@ def buy(request, id, name_item):
         date = datetime.datetime.now().date()
         Shop_list.objects.filter(id=id).update(quantity=quantity, price=price, status='куплено', buy_date=date)
         return redirect('/shop_list/slist')
+
+def del_from_list(request, id):
+    id = str(id).replace('<', '').replace('>', '')
+    date = datetime.datetime.now().date()
+    Shop_list.objects.filter(id=id).update( status='отмена', buy_date=date)
+    return redirect('/shop_list/slist')
 
 def remove(request, item_id):
     return HttpResponse('Удаление из списка')
