@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Удаление юзера</title>
+</head>
+<body>
+<div class="container">
+    <h3>Ведите email того, кого нужно удалить из списка (если ввести свою почту, вы будете удалены из чужих списков)</h3>
+    <form method="post">
+        {% csrf_token %}
+        <input type="text" name="email" id="email" required>
+        <p>
+            <button type="submit" class="rem_btn">Добавить</button>
+        </p>
+    </form>
+</div>
+</body>
+</html>

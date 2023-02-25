@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Добавление юзера</title>
+</head>
+<body>
+<div class="container">
+    <h1>Добавление пользователя к списку покупок</h1>
+    <form method="post">
+        {% csrf_token %}
+        <input type="text" name="email" id="email" required>
+        <p>
+            <button type="submit" class="inv_btn">Добавить</button>
+        </p>
+    </form>
+</div>
+</body>
+</html>

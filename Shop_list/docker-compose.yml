@@ -1,0 +1,27 @@
+# TODO при создании контейнера файл выложить в корневой каталог
+version: "3.9"
+services:
+  sl_app:
+    tty: true
+    build: ""
+    ports:
+      - "8000:8000"
+#    command: python3 manage.py runserver 127.0.0.1:8000
+    command: python3 manage.py runserver 0.0.0.0:8000
+
+    environment:
+      - DB_HOST=db
+      - DB_NAME=shoplist
+      - DB_USER=postgres
+      - DB_PASSWORD=postgres
+
+  db:
+    image: postgres:14.1-alpine
+    environment:
+      - POSTGRES_DB=shoplist
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - "5432:5432"
+
+

@@ -5,10 +5,7 @@
     <title>SHOPLIST</title>
 </head>
 <body>
-<div class="container">
-    <h2>SHOPLIST для  {{ current_user }}</h2>
-    <p>Выход из учетной записи:  <a href="/user/logaut">logaut</a></p>
-    <style type="text/css">
+<style type="text/css">
      table {
         text-align: center;
      }
@@ -23,7 +20,18 @@
        text-align: center;
        background-color: #F9C5BC;
      }
+     table.inv  {
+     margin-right: 10px;
+     }
     </style>
+<div class="container">
+    <h2>SHOPLIST для  {{ current_user }}</h2>
+    <p></p>
+    <table class="inv">
+     <th><a href="/user/logaut">Выход из учетной записи</a></th>
+    <th><a href="/user/invite">Добавить юзера</a></th>
+    <th><a href="/user/remove_user">Удалить юзера</a></th>
+    </table>
 
     <table border="1">
         <tr>

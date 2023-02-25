@@ -15,7 +15,9 @@ def index(request):
 
 def slist(request):
     if request.method == 'GET':
-        lst = User_to_list.objects.get(user_id=1).list_id
+        user_id = request.user.id
+        lst = User_to_list.objects.get(user_id=user_id).list_id
+        # lst = str(lst).replace('-', '')
         sql = '''
                 select * from sl_app_shop_list 
                 join sl_app_item
@@ -23,11 +25,10 @@ def slist(request):
                 join sl_app_malllist
                 on sl_app_malllist.id = sl_app_item.shop_id_id
                 where sl_app_shop_list.list_id = %s
-                and sl_app_shop_list.status = "нужно купить";
+                and sl_app_shop_list.status = 'купить';
                 '''
         shoplst = Shop_list.objects.raw(sql, [str(lst), ])
         current_user = User.objects.get(username=request.user.username)
-        print(current_user)
         template = loader.get_template('shop_list.html')
         context = {
             'shoplst': shoplst,
@@ -38,7 +39,8 @@ def slist(request):
 
 def add_to_list(request):
     if request.method == 'GET':
-        lst = User_to_list.objects.get(user_id=1).list_id
+        user_id = request.user.id
+        lst = User_to_list.objects.get(user_id=user_id).list_id
         mall = MallList.objects.filter(list_id=lst).values()
         template = loader.get_template('choice_mall.html')
         context = {
@@ -70,9 +72,9 @@ def add_ok(request):
         quantity = request.POST.get("quantity")
         item_id = request.POST.get("item")
         date = request.POST.get("date")
-        print(quantity, item_id, date)
-        lst = User_to_list.objects.get(user_id=1).list_id
-        new_row = Shop_list(list_id=lst, quantity=quantity, price=0.00, status='нужно купить', buy_date=date, item_id_id=item_id)
+        user_id = request.user.id
+        lst = User_to_list.objects.get(user_id=user_id).list_id
+        new_row = Shop_list(list_id=lst, quantity=quantity, price=0.00, status='купить', buy_date=date, item_id_id=item_id)
         new_row.save()
         return redirect('/shop_list/slist')
 
