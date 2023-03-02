@@ -1,0 +1,80 @@
+[
+{
+    "model": "sl_app.shop_list",
+    "pk": 1,
+    "fields": {
+        "list_id": "947f811d-525c-4a4a-bcd5-0ac9fa396ee9",
+        "item_id": 1,
+        "quantity": 1,
+        "price": "0.00",
+        "status": "купить",
+        "buy_date": "2023-02-24T14:41:05.742Z"
+    }
+},
+{
+    "model": "sl_app.shop_list",
+    "pk": 2,
+    "fields": {
+        "list_id": "947f811d-525c-4a4a-bcd5-0ac9fa396ee9",
+        "item_id": 2,
+        "quantity": 1,
+        "price": "0.00",
+        "status": "купить",
+        "buy_date": "2023-02-24T14:41:13.194Z"
+    }
+},
+{
+    "model": "sl_app.shop_list",
+    "pk": 3,
+    "fields": {
+        "list_id": "947f811d-525c-4a4a-bcd5-0ac9fa396ee9",
+        "item_id": 2,
+        "quantity": 1,
+        "price": "0.00",
+        "status": "купить",
+        "buy_date": "2023-02-25T14:42:28.745Z"
+    }
+},
+{
+    "model": "sl_app.user_to_list",
+    "pk": 1,
+    "fields": {
+        "user_id": 1,
+        "list_id": "947f811d-525c-4a4a-bcd5-0ac9fa396ee9",
+        "or_list": "947f811d-525c-4a4a-bcd5-0ac9fa396ee9"
+    }
+},
+{
+    "model": "sl_app.user_to_list",
+    "pk": 2,
+    "fields": {
+        "user_id": 2,
+        "list_id": "9f7f9f1e-aee9-4f46-b127-7b99c1c520d9",
+        "or_list": "9f7f9f1e-aee9-4f46-b127-7b99c1c520d9"
+    }
+},
+{
+    "model": "sl_app.malllist",
+    "pk": 1,
+    "fields": {
+        "name_mall": "АТБ",
+        "list_id": "947f811d-525c-4a4a-bcd5-0ac9fa396ee9"
+    }
+},
+{
+    "model": "sl_app.item",
+    "pk": 1,
+    "fields": {
+        "name_item": "хлеб",
+        "shop_id": 1
+    }
+},
+{
+    "model": "sl_app.item",
+    "pk": 2,
+    "fields": {
+        "name_item": "молоко",
+        "shop_id": 1
+    }
+}
+]

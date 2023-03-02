@@ -1,6 +1,6 @@
 import uuid
 
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseNotFound
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from sl_app.models import User_to_list, MallList, Item
@@ -56,7 +56,7 @@ def invite(request):
         email = request.POST.get("email")
         invate_user = User.objects.filter(email=email).first()
         if invate_user is None:
-            return HttpResponse('Пользователь не найден')
+            return HttpResponseNotFound('Пользователь не найден')
 
         current_user_list = User_to_list.objects.get(user_id=request.user.id).list_id
         User_to_list.objects.filter(user_id=invate_user.id).update(list_id=current_user_list)
